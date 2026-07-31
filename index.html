@@ -1,17 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
 <meta charset="UTF-8">
-<title>Vincent's Portfolio</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vincent Resume Website</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------------- page-specific: Hero ---------------- */
+  .hero{
+    display:grid;
+    grid-template-columns: 220px 1fr;
+    gap: 56px;
+    align-items:center;
+    padding-top: 72px;
+  }
+    .avatar{
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--mono);
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--bg);
+    background: conic-gradient(from 220deg, var(--accent-violet), var(--accent-amber), var(--accent-teal), var(--accent-violet));
+    position: relative;
+  }
+  .avatar::after{
+    content:"";
+    position:absolute;
+    inset:6px;
+    border-radius:50%;
+    background: var(--bg-alt);
+  }
 
+  .hero-text h1{ font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 600; }
+  .hero-text h1 .cursor{
+    display:inline-block;
+    width: 2px; height: 1em;
+    background: var(--accent-teal);
+    margin-left: 6px;
+    vertical-align: -0.15em;
+    animation: blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+  .hero-text p{ margin: 18px 0 28px; color: var(--text-dim); max-width: 52ch; font-size: 1.02rem; }
 
+  @media (max-width: 640px){
+    .hero{ grid-template-columns: 1fr; text-align:center; padding-top: 48px; }
+    .avatar{ margin: 0 auto; }
+    .hero-text p{ margin-left:auto; margin-right:auto; }
+    .btn-row{ justify-content:center; }
+  }
+
+  /* ---------------- page-specific: Latest project ---------------- */
+  .latest-project{ border-top: 1px solid var(--border); }
+  .latest-project > .wrap > h2{ font-size: 1.6rem; margin-bottom: 32px; }
+
+  .card-body{
+    display:grid;
+    grid-template-columns: 120px 1fr;
+    gap: 28px;
+    padding: 32px;
+    align-items: start;
+  }
+  .card-pic{
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--bg-tab);
+    border: 1px dashed var(--border);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-align:center;
+  }
+  .card-body h3{ font-size: 1.3rem; margin-bottom: 10px; }
+  .card-body p{ color: var(--text-dim); margin: 0 0 18px; max-width: 60ch; }
+  .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 18px; }
+  .tags span{
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--accent-amber);
+  }
+  .card-link{ font-family: var(--mono); font-size: 0.88rem; text-decoration:none; color: var(--accent-teal); }
+  .card-link:hover{ text-decoration: underline; }
+
+  @media (max-width: 560px){
+    .card-body{ grid-template-columns: 1fr; text-align:center; }
+    .card-pic{ margin: 0 auto; }
+    .tags{ justify-content:center; }
+  }
+
+  /* ---------------- page-specific: Contact teaser ---------------- */
+  .contact-teaser{ border-top: 1px solid var(--border); text-align:center; }
+  .contact-teaser h2{ font-size: 1.9rem; margin-bottom: 16px; }
+  .contact-teaser p.lead{ color: var(--text-dim); max-width: 46ch; margin: 0 auto 32px; }
+  .contact-teaser .btn-row{ justify-content:center; margin-bottom: 28px; }
+
+  .socials{ display:flex; gap: 20px; justify-content:center; font-family: var(--mono); font-size: 0.85rem; }
+  .socials a{ text-decoration:none; color: var(--text-dim); }
+  .socials a:hover{ color: var(--accent-violet); }
+</style>
+</head>
 <body>
 
-<div class="">
- <h1>This is a Heading</h1>
- <p>This is a paragraph.</p>
- <p>This is another paragraph.</p>
-</div>
+  <!-- ===== Top bar ===== -->
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+      <a class="logo" href="#home">Vincent</a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">[ ]</button>
+
+      <nav class="tabs" id="navTabs">
+        <a href="projects.html" class="nav-link">Projects</a>
+        <a href="resume.html" class="nav-link">Resume</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section id="home" class="hero wrap">
+	  <img class="avatar" src="VH-89b.jpg" alt="Portrait of Vincent">
+
+      <div class="hero-text">
+        <h1>Vincent Hollander<span class="cursor" aria-hidden="true"></span></h1>
+        <p>
+          I'm a cybersecurity specialist with a strong background in ethics. I want to protect the systems that people use to run their day-to-day lives, and hopefully make the world a better place for all!
+        </p>
+        <div class="btn-row">
+          <a class="btn primary" href="#projects">View latest project</a>
+          <a class="btn ghost" href="contact.html">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Latest project ===== -->
+    <section id="projects" class="latest-project">
+      <div class="wrap">
+        <p class="eyebrow">// latest project</p>
+        <h2>Latest Project</h2>
+
+        <div class="terminal-card">
+          <div class="card-chrome">
+            <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+            securing-my-phone.exe
+          </div>
+          <div class="card-body">
+		  <img class="card-pic" src="grapheneOS.JPG" alt="Photo of the Graphene Phone">
+            <div>
+              <h3>GrapheneOS Experience</h3>
+              <p>
+                I installed GrapheneOS on a Pixel7a! This was my experience with the operating system, and what I think it holds for the future of mobile cybersec.
+              </p>
+              <div class="tags">
+                <span>MobileIoT</span>
+                <span>GrapheneOS</span>
+                <span>FOSS</span>
+              </div>
+              <a class="card-link" href="projects.html#latest">View project →</a>
+            </div>
+          </div>
+        </div>
+        <p style="text-align:right; margin-top:16px;">
+          <a class="card-link" href="projects.html">See all projects →</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Contact teaser (full form lives on contact.html — no email shown here) ===== -->
+    <section id="contact" class="contact-teaser">
+      <div class="wrap">
+        <p class="eyebrow">$ contact --me</p>
+        <h2>Contact Me!</h2>
+        <p class="lead">
+          Shoot me a message to see how I can help in your project, or if you have any cybersecurity and/or philosophy questions, or if you wanna say hi!
+        </p>
+        <div class="btn-row">
+          <a class="btn primary" href="contact.html">Hi!</a>
+        </div>
+        <div class="socials">
+          <a href="https://www.github.com/KarmaThePlant">GitHub</a>
+          <a href="https://www.linkedin.com/in/vincent-hollander-4a5a73232/">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> jk this isn't copywrited.
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Scroll-spy for the on-page Home anchor. Projects and Contact are now
+    // separate pages, so they aren't part of this observer.
+    const sections = ['home'].map(id => document.getElementById(id));
+    const linkFor = id => document.querySelector(`nav.tabs a[href="#${id}"]`);
+    const links = document.querySelectorAll('nav.tabs a.nav-link');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          links.forEach(l => l.classList.remove('active'));
+          const active = linkFor(entry.target.id);
+          if(active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(s => s && observer.observe(s));
+  </script>
 
 </body>
-</html> 
+</html>
