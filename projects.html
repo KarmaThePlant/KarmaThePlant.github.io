@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Vincent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------------- page-specific: Projects ---------------- */
+  .projects-hero{ padding-top: 72px; padding-bottom: 16px; }
+  .projects-hero h1{ font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 600; }
+  .projects-hero p{ color: var(--text-dim); max-width: 56ch; margin: 16px 0 0; }
+
+  .project-list{ padding-top: 24px; display:flex; flex-direction:column; gap: 28px; }
+
+  .project-card .card-body{
+    display:flex;
+    align-items:center;
+    gap: 36px;
+    padding: 36px;
+  }
+  /* mirrored layout for the zig-zag rhythm down the list */
+  .project-card .card-body.reverse{ flex-direction: row-reverse; }
+  .project-card .card-body.reverse .project-content{ text-align: right; }
+  .project-card .card-body.reverse .tags{ justify-content: flex-end; }
+  .project-card .card-body.reverse .project-content p{ margin-left: auto; }
+
+  .project-pic{
+    flex: 0 0 auto;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--bg-tab);
+    border: 1px dashed var(--border);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  .project-content h3{ font-size: 1.3rem; margin-bottom: 6px; }
+  .project-content .meta{
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent-amber);
+    margin-bottom: 12px;
+  }
+  .project-content .blurb{ color: var(--text-dim); margin: 0 0 16px; max-width: 56ch; }
+
+  .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 16px; }
+  .tags span{
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--accent-amber);
+  }
+  .project-link{ font-family: var(--mono); font-size: 0.88rem; text-decoration:none; color: var(--accent-teal); }
+  .project-link:hover{ text-decoration: underline; }
+
+  @media (max-width: 640px){
+    .project-card .card-body,
+    .project-card .card-body.reverse{
+      flex-direction: column;
+      text-align:center;
+      padding: 28px;
+    }
+    .project-pic{ margin: 0 auto; }
+    .tags,
+    .project-card .card-body.reverse .tags{ justify-content:center; }
+    .project-content p,
+    .project-card .card-body.reverse .project-content p{ margin-left:auto; margin-right:auto; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===== Top bar ===== -->
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+      <a class="logo" href="index.html">Vincent</a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">[ ]</button>
+
+      <nav class="tabs" id="navTabs">
+        <a href="projects.html" class="nav-link active">Projects</a>
+        <a href="resume.html" class="nav-link">Resume</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Heading ===== -->
+    <section class="projects-hero wrap">
+      <p class="eyebrow">// projects</p>
+      <h1>Projects</h1>
+      <p>Blog-style posts of things I've worked on!</p>
+    </section>
+
+    <!-- ===== Project list ===== -->
+    <section class="project-list wrap">
+
+    <!-- Newest project goes at the top; add future entries above this comment. -->
+
+      <div class="terminal-card project-card" id="latest">
+        <div class="card-chrome">
+          <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          securing-my-phone.exe
+        </div>
+        <div class="card-body">
+		<img class="project-pic" src="grapheneOS.JPG" alt="My phone booting into GrapheneOS">
+          <div class="project-content">
+            <h3>GrapheneOS Experience</h3>
+            <p class="meta">July 2026 · Personal Project</p>
+	    <p class="blurb">I installed GrapheneOS on a Pixel7a! This was my experience with the operating system, and what I think it holds for the future of mobile cybersec.</p>
+            <div class="tags"><span>MobileIoT</span><span>GrapheneOS</span><span>FOSS</span></div>
+            <a class="project-link" href="GrapheneOS-Experience.html">View project →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="terminal-card project-card">
+        <div class="card-chrome">
+          <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          project-02.app
+        </div>
+        <div class="card-body reverse">
+          <div class="project-pic" aria-hidden="true">pic</div>
+          <div class="project-content">
+            <h3>[Project Title]</h3>
+            <p class="meta">2025 · [Personal / Client project]</p>
+            <p class="blurb">[One or two sentences on what this project does, who it's for, and the problem it solves.]</p>
+            <div class="tags"><span>Python</span><span>Machine Learning</span></div>
+            <a class="project-link" href="project-02.html">View project →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="terminal-card project-card">
+        <div class="card-chrome">
+          <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          project-03.app
+        </div>
+        <div class="card-body">
+          <div class="project-pic" aria-hidden="true">pic</div>
+          <div class="project-content">
+            <h3>[Project Title]</h3>
+            <p class="meta">2024 · [Personal / Client project]</p>
+            <p class="blurb">[One or two sentences on what this project does, who it's for, and the problem it solves.]</p>
+            <div class="tags"><span>Swift</span><span>iOS</span></div>
+            <a class="project-link" href="project-03.html">View project →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Duplicate one of the .project-card blocks above to add more
+           projects. Alternate plain / "card-body reverse" to keep the
+           zig-zag rhythm going down the page. Point its "View project"
+           link at a new project-0N.html article (copy project-01.html
+           as a starting template, and update the Prev/Next pager links
+           on the pages next to it in the sequence). -->
+
+    </section>
+  </main>
+
+  <footer>
+    hello from the footer!
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

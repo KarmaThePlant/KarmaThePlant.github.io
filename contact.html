@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Vincent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------------- page-specific: Contact ---------------- */
+  .contact-hero{ padding-top: 72px; padding-bottom: 40px; }
+  .contact-hero h1{ font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 600; }
+  .contact-hero p{ color: var(--text-dim); max-width: 52ch; margin: 16px 0 0; }
+
+  .form-section{ padding-top: 0; }
+  .form-card .card-body{ padding: 32px; }
+
+  form .field:last-of-type{ margin-bottom: 28px; }
+  .field-input textarea{ min-height: 160px; }
+
+  .form-actions{ display:flex; justify-content:flex-end; align-items:center; gap:16px; }
+
+  .form-status{
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--accent-teal);
+    margin: 0;
+  }
+  .form-status.is-error{ color; var(--accent-amber); }
+  .form-status[hidden]{ display:none; }
+
+  @media (max-width: 560px){
+    .form-actions{ flex-direction:column-reverse; align-items:stretch; }
+    .form-actions .btn{ text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===== Top bar ===== -->
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+      <a class="logo" href="index.html">Vincent</a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">[ ]</button>
+
+      <nav class="tabs" id="navTabs">
+        <a href="projects.html" class="nav-link">Projects</a>
+        <a href="resume.html" class="nav-link">Resume</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Heading ===== -->
+    <section class="contact-hero wrap">
+      <p class="eyebrow">// get in touch</p>
+      <h1>Contact Me!</h1>
+      <p>
+        Fill out the form below and I'll get back to you as soon as I can!
+      </p>
+    </section>
+
+    <!-- ===== Form ===== -->
+    <section class="form-section wrap">
+      <div class="terminal-card form-card">
+        <div class="card-chrome">
+          <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          new-message.send
+        </div>
+        <div class="card-body">
+          <form id="contactForm" action="https://formspree.io/f/mojgzryj" method="POST">
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+	  <form id="contactForm">
+            <div class="field">
+              <label for="name">Name</label>
+              <div class="field-input">
+                <span class="prefix" aria-hidden="true">&gt;</span>
+                <input id="name" name="name" type="text" placeholder="Dan Smith" autocomplete="name" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <div class="field-input">
+                <span class="prefix" aria-hidden="true">&gt;</span>
+                <input id="email" name="email" type="email" placeholder="dsmith@bastille.com" autocomplete="email" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="message">Message</label>
+              <div class="field-input">
+                <span class="prefix" aria-hidden="true">&gt;</span>
+                <textarea id="message" name="message" placeholder="How am I gonna be an optimist about this?" required></textarea>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <p class="form-status" id="formStatus" role="status" aria-live="polite" hidden></p>
+		<button type="submit" class="btn primary">Send →</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Thank you for looking at my website!
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    const submitBtn = form.querySelector('button[type="submit"]');
+ 
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+ 
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      status.hidden = true;
+      status.classList.remove('is-error');
+ 
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+ 
+        if (response.ok) {
+          status.textContent = "Sent! I'll reply as soon as I can!";
+          status.hidden = false;
+          form.reset();
+        } else {
+          const data = await response.json().catch(() => null);
+          const message = data && data.errors
+            ? data.errors.map((err) => err.message).join(', ')
+            : null;
+	  status.textContent = message || "Something went wrong. Please try again or reach out another way.";
+          status.classList.add('is-error');
+          status.hidden = false;
+        }
+      } catch (err) {
+        status.textContent = "Something went wrong. Check your connection and try again.";
+        status.classList.add('is-error');
+        status.hidden = false;
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send →';
+      }
+    });
+  </script>
+
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume — Vincent Hollander</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------------- page-specific: Resume ---------------- */
+  .resume-hero{ padding-top: 72px; padding-bottom: 24px; }
+  .resume-hero h1{ font-size: clamp(1.9rem, 3.6vw, 2.5rem); font-weight: 600; }
+  .resume-hero p{ color: var(--text-dim); max-width: 56ch; margin: 16px 0 0; }
+
+  .resume-section{ border-top: 1px solid var(--border); }
+  .resume-section h2{ font-size: 1.5rem; margin-bottom: 36px; }
+
+  /* one resume line-item: circular pic + title/meta/blurb */
+  .entry{
+    display:flex;
+    gap: 22px;
+    align-items:flex-start;
+    margin-bottom: 32px;
+  }
+  .entry:last-child{ margin-bottom: 0; }
+
+  .entry-pic{
+    flex: 0 0 auto;
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--bg-tab);
+    border: 1px dashed var(--border);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--text-dim);
+  }
+  /* Replace .entry-pic with a real logo/photo: <img class="entry-pic" src="..." alt="..."> */
+
+  .entry-content h3{ font-size: 1.08rem; margin-bottom: 4px; }
+  .entry-content .meta{
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent-amber);
+    margin-bottom: 8px;
+  }
+  .entry-content p{ color: var(--text-dim); margin:0; max-width: 62ch; }
+
+  /* certifications: mirrored layout, pic on the right */
+  .entry--reverse{ flex-direction: row-reverse; text-align: right; }
+  .entry--reverse .entry-content p{ margin-left: auto; }
+
+  @media (max-width: 600px){
+    .entry, .entry--reverse{
+      flex-direction: column;
+      align-items:center;
+      text-align:center;
+    }
+    .entry-content p{ margin-left:auto; margin-right:auto; }
+  }
+
+  .resume-cta{ text-align:center; }
+</style>
+</head>
+<body>
+
+  <!-- ===== Top bar ===== -->
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+      <a class="logo" href="index.html">Vincent</a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">[ ]</button>
+
+      <nav class="tabs" id="navTabs">
+        <a href="projects.html" class="nav-link">Projects</a>
+        <a href="resume.html" class="nav-link active">Resume</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Heading ===== -->
+    <section class="resume-hero wrap">
+      <p class="eyebrow">// resume</p>
+      <h1>Web-View Resume</h1>
+      <p>
+        This is an overview of my experience and qualifications. Contact me for the proper document with all of the nitty gritty information.
+      </p>
+    </section>
+
+    <!-- ===== Education ===== -->
+    <section id="education" class="resume-section wrap">
+      <p class="eyebrow">// education</p>
+      <h2>Education</h2>
+
+      <!-- Duplicate this .entry block for each additional degree/program -->
+      <div class="entry">
+	      <img class="entry-pic" src="CU-Denver.jpg" alt="CU Denver Logo">
+        <div class="entry-content">
+          <h3>B.S in Cybersecurity</h3>
+          <p class="meta">University of Colorado - Denver · Denver, Colorado · 2023-2026</p>
+          <p>A degree spanning a wide range of security, programming, and IT-related topics. Including, but not limited to: system administration, database administration, HIPPA compliance, and ethical hacking.</p>
+        </div>
+      </div>
+
+      <div class="entry">
+        <img class="entry-pic" src="CU-Denver.jpg" alt="CU Denver Logo">
+        <div class="entry-content">
+          <h3>B.A. in Philosophy</h3>
+          <p class="meta">University of Colorado - Denver · Denver, Colorado · 2023-2026</p>
+          <p>A degree in philosophy where my primary focus was diversity and ethics.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Certifications ===== -->
+    <section id="certifications" class="resume-section wrap">
+      <p class="eyebrow">// certifications</p>
+      <h2>Certifications</h2>
+
+      <!-- Duplicate this .entry--reverse block for each additional certification -->
+      <div class="entry entry--reverse">
+	      <img class="entry-pic" src="CompTIA_Security_2B.png" alt="CompTIA Security+ Seal">
+        <div class="entry-content">
+          <h3>CompTIA Security+</h3>
+          <p class="meta">CompTIA · 2024</p>
+          <p>A baseline certification that covers core security functions necessary in an IT security career.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Work ===== -->
+    <section id="work" class="resume-section wrap">
+      <p class="eyebrow">// work</p>
+      <h2>Work Experience</h2>
+
+      <!-- Duplicate this .entry block for each additional role -->
+      <div class="entry">
+        <img class="entry-pic" src="Micro-Center.jpg" alt="Micro Center Logo">
+        <div class="entry-content">
+          <h3>Inventory Specialist</h3>
+          <p class="meta">Micro-Electronics Inc. · Denver, Colorado · 2024-Present</p>
+          <p>A speed and detail-oriented position with responsibilities to load and unload merchandise, communicate merchandising statuses to associates and customers, and support store operations.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="resume-section resume-cta wrap">
+      <a class="btn primary" href="contact.html">Contact me!</a>
+    </section>
+  </main>
+
+  <footer>
+    Idk what to put in the footer tbh.
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
